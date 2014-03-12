@@ -9,10 +9,18 @@
 <!-- <script charset='utf-8' src='javascripts/application.js' charset='UTF-8'></script>
  -->
 <script>
-    var page = new XMLHttpRequest();
+
+	if(!('Worker' in window)) {
+		 alert('Current browser is not supporting webworker!');
+	}
+	
+    var worker = new Worker('javascripts/worker.js');
+    worker.onmessage = function (event) {
+    	document.querySelector('#content').innerHTML = event.data;
+    }
     
-    page.onload = function() {
-    	document.querySelector('#content').innerHTML = page.responseText;
+    worker.onerror = function (e) {
+        alert(e.message);
     }
     
     window.onload = function () {
@@ -20,14 +28,13 @@
     		var target = event.target;    		
     	    if(target.getAttribute('href')) {
     	    	   event.preventDefault();
+    	    	   
     	    	   var href = target.getAttribute('href');
-    	    	   page.open('GET', href, true);
-    	    	   page.send();
+    	    	   worker.postMessage({key: href});    	    	   
     	    }
     	}
     	
-    	page.open('GET', 'welcome.html', true);
-        page.send();    	
+    	worker.postMessage({key: 'welcome.html'});    	
     }
     
 </script>
