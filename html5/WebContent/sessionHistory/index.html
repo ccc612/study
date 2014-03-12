@@ -6,39 +6,7 @@
 <title>AwesomeCo</title>
 
 
-<!-- <script charset='utf-8' src='javascripts/application.js' charset='UTF-8'></script>
- -->
-<script>
-
-	if(!('Worker' in window)) {
-		 alert('Current browser is not supporting webworker!');
-	}
-	
-    var worker = new Worker('javascripts/worker.js');
-    worker.onmessage = function (event) {
-    	document.querySelector('#content').innerHTML = event.data;
-    }
-    
-    worker.onerror = function (e) {
-        alert(e.message);
-    }
-    
-    window.onload = function () {
-    	document.querySelector('nav ul').onclick = function(event) {    		
-    		var target = event.target;    		
-    	    if(target.getAttribute('href')) {
-    	    	   event.preventDefault();
-    	    	   
-    	    	   var href = target.getAttribute('href');
-    	    	   worker.postMessage({key: href});    	    	   
-    	    }
-    	}
-    	
-    	worker.postMessage({key: 'welcome.html'});    	
-    }
-    
-</script>
-
+<script charset='utf-8' src='javascripts/application.js' charset='UTF-8'></script>
 <link rel='stylesheet' href='style.css' type='text/css'>
 </head>
 

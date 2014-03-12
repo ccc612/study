@@ -1,11 +1,13 @@
 /**
  * 
  */
+
+try {
 var page = new XMLHttpRequest();
 
 page.onload = function() {
 	postMessage(page.responseText);
-}
+};
 
 function messageHandler(e) {
 	if (e.data.key) {
@@ -15,3 +17,6 @@ function messageHandler(e) {
 }
 
 addEventListener("message", messageHandler, true);
+} catch(exception) {
+	throw exception;	
+}
