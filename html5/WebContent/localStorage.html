@@ -25,9 +25,18 @@
 	}
 	
 	function displayData() {
-		document.querySelector('#data').innerHTML = 
-			"이름 : " + localStorage.getItem('name') + "<br/>" +
-			"나이 : " + localStorage.getItem('age');
+		var output = "keys length : " + localStorage.length + "<br/>";
+		for(var i = 0; i < localStorage.length; ++i) {
+			var key = localStorage.key(i);
+			output += "key(" + i + ") : " + key 
+			       + " = " + localStorage.getItem(key) + "<br/>";			          
+		}
+		document.querySelector('#data').innerHTML = output;			
+	}
+	
+	function clearData() {
+		localStorage.removeItem('name');
+		localStorage.removeItem('age');
 	}
 
 	</script>
@@ -50,6 +59,7 @@
 </form>
 
 <button onclick='displayData()'>정보 보여주기</button>
+<button onclick='clearData()'>Clear</button>
 <div id='data'></div>
 
 </body>
