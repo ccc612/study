@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang='ko'>
+<head>
+<meta charset='UTF-8'>
+<title>Insert title here</title>
+<style type="text/css">
+.target {
+	width: 228px;
+	height: 228px;
+	padding: 10px;
+	margin: 10px;
+	border: 1px solid #aaaaaa;
+	float: left;
+}
+
+#clear {
+	clear: both;
+}
+</style>
+<script>
+	window.onload = function() {
+		
+		var drag1 = document.querySelector('#drag1');
+		drag1.ondragstart = function(event) {
+			event.dataTransfer.setData("key", event.target.id);
+		}
+		
+		function dragOver(event) {
+			event.preventDefault();
+		}
+		
+		function drag(event) {
+			event.preventDefault();
+			
+			var data = event.dataTransfer.getData("key");
+			event.target.appendChild(document.getElementById(data));
+		}
+		
+		var div1 = document.querySelector('#div1');
+		var div2 = document.querySelector('#div2');
+		div1.ondragover = dragOver;		
+		div1.ondrop = drag;
+		
+		div2.ondragover = dragOver;		
+		div2.ondrop = drag;
+	}
+	</script>
+</head>
+
+<body>
+
+	<p>아래 이미지를 위의 영역 안으로 드래그 하세요 :</p>
+
+	<div id="div1" class='target'></div>
+	<div id="div2" class='target'></div>
+	<div id='clear'></div>
+	<br>
+	<img id="drag1" src="images/kth.jpg" draggable="true" width="228"
+		height="228">
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
