@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Tahoe 216</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<link rel="stylesheet" href = "html5.css">
+
+<style type="text/css">
+
+#raceTypes div {
+    cursor: copy;
+    width: 120px;
+    height: 20px;
+    border: solid 1px;
+    padding: 2px;
+    margin: 2px;
+    text-align: center;
+    background-color: lightblue;
+}
+
+#preferences div {
+    width: 120px;
+    height: 20px;
+    border: solid 1px;
+    padding: 2px;
+    margin: 2px;
+    text-align: center;
+}
+
+.highlighted {
+    background-color: yellow;
+}
+
+
+</style>
+
+<script type="text/javascript">
+    function validateForm() {
+        //if(document.forms["register"].checkValidity()) {
+          alert("Your registration was sucessfully submitted!");
+        //}
+    }
+
+    function test() {
+        document.forms["register"]["emailaddress"].setCustomValidity("Foo!");
+        alert("Name value: " + document.forms["register"]["emailaddress"].value + "\n" +
+              "Name validity: " + document.forms["register"]["emailaddress"].validity + "\n" +
+              "Validation message: " + document.forms["register"]["emailaddress"].validitionMessage + "\n" +
+              "Will validate: " + document.forms["register"]["emailaddress"].willValidate + "\n"
+              );
+    }
+
+
+    function dragStart(evt) {
+        evt.dataTransfer.setData("text/plain", evt.target.textContent);
+        return true;
+    }
+
+    function dragEnter(evt) {
+        evt.target.className="highlighted";
+        return false;
+    }
+
+    function dragLeave(evt) {
+        evt.target.className=null;
+        return false;
+    }
+
+    function drop(evt) {
+        evt.target.textContent = evt.dataTransfer.getData("text/plain");
+        evt.target.style.backgroundColor = "lightgreen";
+        return false;
+    }
+
+    function invalidHandler(evt) {
+        alert('Please enter a value for email address');
+        evt.preventDefault();
+    }
+    function loadDemo() {
+       document.register.emailaddress.addEventListener("invalid", invalidHandler, false);
+
+    }
+
+    window.addEventListener("load", loadDemo, false);
+
+</script>
+
+</head>
+
+  <body>
+  <div id="container">
+    <header>
+        <h1>Tahoe 216</h1>
+        <h3 align="center">3 Days, 216-Miles, One Crazy Runner's High</h3>
+        <h2>&nbsp;</h2>
+        <h4>Live  Results Now!</h4>
+    </header>
+
+    <nav>
+        <h2>Links</h2>
+        <a href="index.html" title="Home">Home</a>
+        <a href="signup.html" title="Are you crazy enough?">Sign Up</a>
+        <a href="about.html" title="Learn more about the T216">About the Race</a>
+    </nav>
+
+    <section>
+      <article>
+        <h2>Live T216 Leaderboard</h2>
+        <p id="leaderboardStatus">Leaderboard: Connecting...</p>
+        <div id="leaderboard"></div>
+      </article>
+
+     <article>
+        <h2>Sign Up Today</h2>
+        <p><strong>Race fee</strong>: $216 </p>
+        <p>Make check payable to the Happy Trails Running Club</p>
+        <p><strong>Note</strong>: We  recommend that you seek your doctor's and family's approval before you sign up. Race fees are not refundable. </p>
+        <form name="register">
+          <p><label>Runner: <input name="name" value="Racer Ecks" placeholder="First and last name" required></label></p>
+          <p><label>Tel #: <input name="telnumber" type="tel" placeholder="(xxx) xxx-xxx"></label></p>
+          <p><label>E-mail: <input name="emailaddress" multiple list="contacts" required type="email" placeholder="For confirmation only"></label></p>
+          <p><label>DOB: <input name="dob" type="date" placeholder="MM/DD/YYYY"></label></p>
+          <fieldset>
+            <legend>T-shirt Size: </legend>
+            <p><label> <input type="radio" name="tshirt" value="small"> Small </label></p>
+            <p><label> <input type="radio" name="tshirt" value="medium"> Medium </label></p>
+            <p><label> <input type="radio" name="tshirt" value="large"> Large </label></p>
+            <p><label>Shirt style: <input name="shirtstyle" type="text" list="stylelist"></label></p>
+            <datalist id="stylelist">
+             <option value="White" label="1st Year">
+             <option value="Gray" label="2nd - 4th Year">
+             <option value="Navy" label="Veteran (5+ Years)">
+            </datalist>
+          </fieldset>
+          <fieldset>
+            <legend>Extras: </legend>
+            <p><label> <input type="checkbox" name="extra" value="pasta">Pasta meal</label></p>
+            <p><label> <input type="checkbox" name="extra" value="cert">Certificate</label></p>
+            <p><label> <input type="checkbox" name="extra" value="pic">Finish line picture</label></p>
+          </fieldset>
+
+         <fieldset>
+           <legend>Expectations: </legend>
+           <p>
+            <script type="text/javascript">
+            function showValue(newVal) {
+                document.getElementById("confidenceDisplay").innerHTML = newVal;
+            }
+            </script>
+           <label for="confidence">Confidence Level</label>
+           <input id="confidence" name="level" type="range" onchange="showValue(this.value)" min="0" max="100" step="5" value="0">
+           <span id="confidenceDisplay">0</span><span>%</span>
+           </p>
+         <p><label>Notes: <textarea name="comments" maxlength="140"></textarea></label></p>
+         </fieldset>
+
+         <p>Please select your first, second, and third choice race types. You may drag items
+         from the list into their corresponding fields.</p>
+
+         <table>
+         <tr>
+
+         <td>
+            <fieldset>
+            <legend>Race types:</legend>
+                <div id="raceTypes" ondragstart="return dragStart(event)" ondragend="return false;">
+                    <div draggable="true">5K</div>
+                    <div draggable="true">10K</div>
+                    <div draggable="true">Half Marathon</div>
+                    <div draggable="true">Marathon</div>
+                    <div draggable="true">50 Mile Ultra</div>
+                    <div draggable="true">100 Mile Ultra</div>
+                </div>
+            </fieldset>
+         </td>
+
+         <td style="vertical-align:top">
+             <fieldset>
+                <legend>Preferences:</legend>
+                    <div id="preferences">
+                        <div ondragenter="return dragEnter(event)" ondragleave="return dragLeave(event)" ondragover="return false" ondrop="return drop(event)">1st</div>
+                        <div ondragenter="return dragEnter(event)" ondragleave="return dragLeave(event)" ondragover="return false" ondrop="return drop(event)">2nd</div>
+                        <div ondragenter="return dragEnter(event)" ondragleave="return dragLeave(event)" ondragover="return false" ondrop="return drop(event)">3rd</div>
+                    </div>
+             </fieldset>
+         </td>
+
+         </tr>
+         </table>
+
+         <p><button onclick="document.register.submit()">Register</button></p>
+         <p><button onclick="test()">Test</button></p>
+        </form>
+
+      </article>
+    </section>
+
+   <aside>
+      <h2>Sponsors</h2>
+      <p align="center">Happy Trails Running Club</p>
+     <p align="center"><img src="happy-trails-rc.gif" alt="Happy Trails Running Club" width="149" height="207"></p>
+   </aside>
+
+    <footer>
+        <p>Powered by HTML5</p>
+    </footer>
+
+</div>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<script>
+	   var xml = new XMLHttpRequest();
+	   
+	   xml.onload = function() {
+		   document.querySelector('#result').innerHTML = xml.responseText;
+	   }
+	   
+	   window.onload = function() {
+		   document.querySelector('#reqAJAX').onclick = function() {
+			   xml.open('GET', 'actionText.html', true);
+			   xml.send();
+		   }
+	   }
+
+	</script>	
+	<style>
+	   #result {
+	       width:400px;
+	       height:300px;
+	       border: 1px solid gray;
+	   }
+	</style>
+</head>
+
+<body>
+    <button id="reqAJAX">Request AJAX</button>
+    <hr/>
+    <div id='result'></div>
+
+
+
+</body>
+</html>

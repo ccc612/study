@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Insert title here</title>
+	<meta charset="EUC-KR">	
+	<script>
+	if('Worker' in window) {
+		// alert('Current browser is supporting webworker!');
+	} else {
+		alert('Current browser is not supporting webworker!');
+	}
+	
+	var worker = null;
+	
+	window.onload = function() {
+		document.querySelector("#startWorker").onclick = function() {
+			if(worker == null)
+			    worker = new Worker("demoWorker.js");
+						
+			worker.onmessage = function (event) {
+				document.querySelector('#result').innerHTML = event.data.num;
+			}
+			
+			worker.onerror = function (e) {
+				alert(e.message);
+			}
+			
+			worker.postMessage({key : "start"});
+		}
+		
+	    document.querySelector("#stopWorker").onclick = function() {
+            worker.postMessage({key : "stop"});
+        }
+	}
+
+	</script>	
+</head>
+
+<body>
+    <div>
+        Count Numbers :
+        <output id="result"></output>
+    </div>
+    
+    <button id="startWorker">Start Worker</button>
+    <button id="stopWorker">Stop Worker</button>
+
+</body>
+</html>

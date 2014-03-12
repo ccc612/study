@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<script>
+	window.onload = function() {
+		document.querySelector("#myForm").onsubmit = function() {
+			var passwd1 = document.querySelector("#passwd").value;
+			var passwd2 = document.querySelector("#repasswd").value;
+			
+			if (passwd1 != passwd2) {
+				alert("password validation is failed");
+				event.preventDefault();
+			}
+		} 
+		
+	}
+
+	</script>	
+</head>
+
+<body>
+<form id="myForm" action="loginProc.jsp" method="get">
+    ID<input type="text" name="name" required><br/>
+    Password<input type="password" name="passwd"><br/>
+    Re input Password<input type="password" name="repasswd"><br/>
+    <input type="submit" id="checkBtn" value="login">
+
+<!-- 
+    <datalist id='myList'>
+        <option value='java' />
+        <option value='C/C++' />
+        <option value='python' />
+        <option value='ruby' />        
+    </datalist>
+    language<input type="text" name="name" list="myList">
+    <input type="submit" value="go!">
+
+ -->
+</form>
+</body>
+</html>

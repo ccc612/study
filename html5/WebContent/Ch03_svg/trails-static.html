@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>Happy Trails in SVG</title>
+
+<style>
+  svg {
+    border: 1px solid black;
+  }
+</style>
+
+</head><body><svg width="400" height="600">
+
+  <defs>
+    <pattern id="GravelPattern" patternUnits="userSpaceOnUse" x="0" y="0" width="100" height="67" viewBox="0 0 100 67">
+      <image x="0" y="0" width="100" height="67" xlink:href="gravel.jpg"></image>
+    </pattern>
+    <linearGradient id="TrunkGradient">
+        <stop offset="0%" stop-color="#663300"></stop>
+        <stop offset="40%" stop-color="#996600"></stop>
+        <stop offset="100%" stop-color="#552200"></stop>
+    </linearGradient>
+
+    <rect x="-5" y="-50" width="10" height="50" id="Trunk"></rect>
+    <path d="M-25, -50
+            L-10, -80
+            L-20, -80
+            L-5, -110
+            L-15, -110
+            L0, -140
+            L15, -110
+            L5, -110
+            L20, -80
+            L10, -80
+            L25, -50
+            Z" id="Canopy"></path>
+    <linearGradient id="CanopyShadow" x="0" y="0" x2="0" y2="100%">
+        <stop offset="0%" stop-color="#000" stop-opacity=".5"></stop>
+        <stop offset="20%" stop-color="#000" stop-opacity="0"></stop>
+    </linearGradient>
+    <g id="Tree">
+      <use xlink:href="#Trunk" fill="url(#TrunkGradient)"></use>
+      <use xlink:href="#Trunk" fill="url(#CanopyShadow)"></use>
+      <use xlink:href="#Canopy" fill="none" stroke="#663300" stroke-linejoin="round" stroke-width="4px"></use>
+      <use xlink:href="#Canopy" fill="#339900" stroke="none"></use>
+    </g>
+
+    <g id="TreeShadow">
+      <use xlink:href="#Trunk" fill="#000"></use>
+      <use xlink:href="#Canopy" fill="000" stroke="none"></use>
+    </g>
+  </defs>
+
+
+  <g transform="translate(-10, 350)" stroke-width="20" stroke="url(#GravelPattern)" stroke-linejoin="round">
+        <path d="M0,0 Q170,-50 260, -190 Q310, -250 410,-250" fill="none"></path>
+  </g>
+
+  <text y="60" x="200" font-family="impact" font-size="60px" fill="#996600" text-anchor="middle">
+    Happy Trails!
+  </text>
+
+  <use xlink:href="#TreeShadow" transform="translate(130, 250) matrix(1, 0, -0.5, 1, 0, 0) scale(1, 0.6)" opacity="0.2"></use>
+  <use xlink:href="#Tree" transform="translate(130, 250)"></use>
+
+  <use xlink:href="#TreeShadow" transform="translate(260, 500) matrix(1, 0, -0.5, 1, 0, 0) scale(2, 1.2)" opacity="0.2"></use>
+
+  <use xlink:href="#Tree" transform="translate(260, 500) scale(2)"></use>
+</svg>
+</body></html>
