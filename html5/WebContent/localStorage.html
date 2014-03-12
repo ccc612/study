@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<script>
+	if('localStorage' in window) {
+		//alert("현재 browser는 localStorage를 지원합니다.");
+	}
+	window.onload = function() {
+		var name = document.querySelector('#name');
+		var age = document.querySelector('#age');
+		
+		name = localStorage.getItem('name');
+		age = localStorage.getItem('age');
+		
+		document.querySelector('#myForm').onsubmit = function() {			
+			localStorage.setItem('name', document.querySelector('#name').value);
+			localStorage.setItem('age', document.querySelector('#age').value);
+			
+			name = '';
+			age = '';
+		}
+	}
+	
+	function displayData() {
+		document.querySelector('#data').innerHTML = 
+			"이름 : " + localStorage.getItem('name') + "<br/>" +
+			"나이 : " + localStorage.getItem('age');
+	}
+
+	</script>
+	<style>
+	fieldset {
+	   width : 300px;
+    }
+	</style>	
+</head>
+
+<body>
+
+<form id="myForm">
+    <fieldset>
+        <legend>회원정보</legend>
+        이름 : <input type="text" name="name" id="name" required><br/>
+        나이 : <input type="number" name="age" id="age" required><br/>
+        <input type="submit">
+    </fieldset>
+</form>
+
+<button onclick='displayData()'>정보 보여주기</button>
+<div id='data'></div>
+
+</body>
+</html>

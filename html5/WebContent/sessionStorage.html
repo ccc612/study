@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<script>
+	if('sessionStorage' in window) {
+		//alert("현재 browser는 sessionStorage를 지원합니다.");
+	}
+	window.onload = function() {
+		var name = document.querySelector('#name');
+		var age = document.querySelector('#age');
+		
+		name = sessionStorage.getItem('name');
+		age = sessionStorage.getItem('age');
+		
+		document.querySelector('#myForm').onsubmit = function() {			
+			sessionStorage.setItem('name', document.querySelector('#name').value);
+			sessionStorage.setItem('age', document.querySelector('#age').value);
+			
+			name = '';
+			age = '';
+		}
+	}
+	
+	function displayData() {
+		document.querySelector('#data').innerHTML = 
+			"이름 : " + sessionStorage.getItem('name') + "<br/>" +
+			"나이 : " + sessionStorage.getItem('age');
+	}
+
+	</script>
+	<style>
+	fieldset {
+	   width : 300px;
+    }
+	</style>	
+</head>
+
+<body>
+
+<form id="myForm">
+    <fieldset>
+        <legend>회원정보</legend>
+        이름 : <input type="text" name="name" id="name" required><br/>
+        나이 : <input type="number" name="age" id="age" required><br/>
+        <input type="submit">
+    </fieldset>
+</form>
+
+<button onclick='displayData()'>정보 보여주기</button>
+<div id='data'></div>
+
+</body>
+</html>
