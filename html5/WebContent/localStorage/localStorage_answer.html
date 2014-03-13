@@ -4,45 +4,53 @@
 <head>
 <meta charset='utf-8'>
 <title>설정</title>
-<script>
-	var background_color;
-	var text_color;
-	var text_size;
-	
+<script>	
+
+    var background_color;
+    var text_color;
+    var text_size;
+    var default_value = {
+    		background_color : '#ffffff',
+            text_color : '#000000',
+            text_size : '16px'
+    }
+    
 	function save_settings() {
-		localStorage.setItem('background_color', background_color.value);
-		localStorage.setItem('text_color', text_color.value);
-		localStorage.setItem('text_size', text_size.value);
+		var obj = {
+				background_color : background_color.value,
+				text_color : text_color.value,
+				text_size : text_size.value
+		};
+		alert(JSON.stringify(obj));
+		localStorage.setItem('document_settings', JSON.stringify(obj));
 		
-		apply_preferences_to_page();
+		apply_preferences_to_page(obj);
 	}
 
-	function apply_preferences_to_page() {
-		document.body.style.backgroundColor = background_color.value;
-		document.body.style.color = text_color.value;
-		document.body.style.fontSize = text_size.value;
+	function apply_preferences_to_page(obj) {
+		document.body.style.backgroundColor = obj.background_color;
+		document.body.style.color = obj.text_color;
+		document.body.style.fontSize = obj.text_size;
 	}
 
 	function load_settings() {
-		background_color.value = localStorage.getItem('background_color');
-		text_color.value = localStorage.getItem('text_color');
-
-		var txt_size = localStorage.getItem('text_size');
-		if(txt_size) {
-			text_size.value = txt_size;
-		}
-		else {
-			text_size.value = '16px';
-		}
+		var obj = JSON.parse(localStorage.getItem('document_settings'));
 		
-		apply_preferences_to_page();
+		if(!(obj)) {
+			obj = default_value;
+		}
+		    background_color.value = obj.background_color;
+		    text_color.value = obj.text_color;
+
+		    if(obj.text_size) text_size = obj.text_size;
+		    else text_size.value = '16px';
+		
+		    apply_preferences_to_page(obj);
+		
 	}
 	
-	function clear_settings() {
-		// localStorage.clear();
-		localStorage.removeItem('background_color');
-		localStorage.removeItem('text_color');
-		localStorage.removeItem('text_size');
+	function clear_settings() {		
+		localStorage.removeItem('document_settings');
 		load_settings();
 	}
 	
