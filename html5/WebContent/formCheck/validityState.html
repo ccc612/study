@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Insert title here</title>
+<meta charset='UTF-8' />
+<script>
+	window.onload = function() {
+		var valCheck = null;
+		
+		document.querySelector('#userID').onblur = function() {
+			valCheck = document.querySelector('#userID').validity;
+			
+			if(!valCheck.valid && valCheck.valueMissing) {
+				alert('아이디 항목에 값을 입력하세요.');
+			}
+		}
+		
+		document.querySelector('#age').onblur = function() {
+			valCheck = document.querySelector('#age').validity;
+			
+			if(!valCheck.valid && (valCheck.rangeUnderflow || valCheck.rangeOverflow || valCheck.stepMismatch
+					|| valCheck.typeMismatch)) {
+				alert('나이 항목에 0 ~ 120 사이의 올바른 정수 값을 입력하세요.');
+			}
+		}
+		
+		var checkBtn = document.querySelector('#checkBtn');
+		var myForm = document.querySelector('#myForm');
+		checkBtn.onclick = function() {			
+			if(myForm.willValidity && myForm.checkValidity()) {
+				myForm.submit();
+			}
+			else {
+				alert('사용자 입력이 올바르지 않아 폼을 전송할 수 없습니다.')
+			}
+		}
+	}
+	</script>
+<style>
+</style>
+</head>
+
+<body>
+
+	<form id='myForm'>
+		ID <input type='text' id='userID' name='userID' required>
+		Age <input type='number' id='age' name='age' min='0' max='120' step='1' value='0'>
+		<input type='button' id='checkBtn' value='check'>
+	</form>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

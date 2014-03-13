@@ -1,0 +1,49 @@
+<!-- 
+	1. 사용자 설정 정보를 localStorage를 이용하여 영구 저장하고 페이지가 다시 로드 되었을 때
+		이전의 설정이 화면에 적용되도록 기능을 구현하세요.
+	
+	2. 'clear' 버튼을 새롭게 추가하여 스토리지에 저장된 정보를 모두 삭제하고 화면을 초기화
+		할 수 있는 기능을 구현하세요.
+-->
+
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>설정</title>
+<script>
+	
+	</script>
+</head>
+
+<body>
+
+	<p>
+		<strong>설정</strong>
+	</p>
+
+	<form id="preferences">
+		<fieldset id="colors" class="">
+			<legend>Colors</legend>
+			<ol>
+				<li><label for="background_color">배경색</label> <input
+					type="color" name="background_color" value="#ffffff"
+					id="background_color"></li>
+				<li><label for="text_color">글씨 색깔</label> <input type="color"
+					name="text_color" value="#000000" id="text_color"></li>
+				<li><label for="text_size">글씨 크기</label> <select
+					name="text_size" id="text_size">
+						<option>16px</option>
+						<option>20px</option>
+						<option>24px</option>
+						<option>32px</option>
+				</select></li>
+			</ol>
+		</fieldset>
+
+		<input type="submit" value="적용하기">
+	</form>
+
+</body>
+</html>

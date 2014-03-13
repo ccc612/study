@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Insert title here</title>
+<meta charset='UTF-8' />
+<script src='scriptMobile.js' charset='UTF-8'></script>
+<script>
+	window.addEventListener('load', initFunc, false);
+	</script>
+<style>
+fieldset {
+	width: 350px;
+	margin: 20px;
+	padding: 10px;
+	border-radius: 8px;
+}
+
+input[type=range] {
+	width: 200px;
+}
+</style>
+</head>
+
+<body>
+
+	<form>
+		<fieldset>
+			<legend>Audio Controls</legend>
+			<input type='button' id='start' value='start'> <input
+				type='button' id='pause' value='pause'> <input type='button'
+				id='mute' value='mute'> <label for='volume'><b>volume</b></label>
+			<input type='number' id='volume' min='0' max='1' step='0.1'
+				value='0.5'><br /> <input type='range' id='range' min='0'
+				max='0' step='1' value='0'> <input type='text'
+				id='currentTime' value='00:00' disabled size='5' />
+		</fieldset>
+	</form>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
