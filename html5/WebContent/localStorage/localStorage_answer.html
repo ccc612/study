@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang='ko'>
+<head>
+<meta charset='utf-8'>
+<title>설정</title>
+<script>
+	var background_color;
+	var text_color;
+	var text_size;
+	
+	function save_settings() {
+		localStorage.setItem('background_color', background_color.value);
+		localStorage.setItem('text_color', text_color.value);
+		localStorage.setItem('text_size', text_size.value);
+		
+		apply_preferences_to_page();
+	}
+
+	function apply_preferences_to_page() {
+		document.body.style.backgroundColor = background_color.value;
+		document.body.style.color = text_color.value;
+		document.body.style.fontSize = text_size.value;
+	}
+
+	function load_settings() {
+		background_color.value = localStorage.getItem('background_color');
+		text_color.value = localStorage.getItem('text_color');
+
+		var txt_size = localStorage.getItem('text_size');
+		if(txt_size) {
+			text_size.value = txt_size;
+		}
+		else {
+			text_size.value = '16px';
+		}
+		
+		apply_preferences_to_page();
+	}
+	
+	function clear_settings() {
+		// localStorage.clear();
+		localStorage.removeItem('background_color');
+		localStorage.removeItem('text_color');
+		localStorage.removeItem('text_size');
+		load_settings();
+	}
+	
+	window.onload = function() {
+		background_color = document.getElementById('background_color');
+		text_color = document.getElementById('text_color');
+		text_size = document.getElementById('text_size');		
+		
+		load_settings();
+		
+		var save = document.getElementById('save');		
+		save.onclick = function(event) {
+			save_settings();
+		};
+		
+		var clear = document.getElementById('clear');		
+		clear.onclick = function(event) {
+			clear_settings();
+		};
+	};
+	</script>
+</head>
+
+<body>
+
+	<p>
+		<strong>설정</strong>
+	</p>
+
+	<form id='preferences'>
+		<fieldset id='colors' class=''>
+			<legend>Colors</legend>
+			<ol>
+				<li>
+					<label for='background_color'>배경색</label>
+					<input type='color' name='background_color' value='#ffffff' id='background_color'>
+				</li>
+				<li>
+					<label for='text_color'>글씨 색깔</label>
+					<input type='color' name='text_color' value='#000000' id='text_color'>
+				</li>
+				<li>
+					<label for='text_size'>글씨 크기</label>
+					<select name='text_size' id='text_size'>
+							<option>16px</option>
+							<option>20px</option>
+							<option>24px</option>
+							<option>32px</option>
+					</select>
+				</li>
+			</ol>
+		</fieldset>
+
+		<input type='button' id='save' value='적용하기'>
+		<input type='button' id='clear' value='설정 지우기'>
+	</form>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
