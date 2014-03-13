@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>AwesomeNotes</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="style.css">
+<script charset="utf-8" src="javascripts/notes.js"></script>
+</head>
+
+<body>
+	<section id="sidebar">
+		<input type="button" id="new_button" value="새 노트">
+		<ul id="notes">
+		</ul>
+	</section>
+
+	<section id="main">
+		<form>
+			<ol>
+				<li><input type="submit" id="save_button" value="저장"> <input
+					type="submit" id="delete_button" value="삭제"></li>
+				<li><label for="title">제목</label> <input type="text" id="title">
+				</li>
+				<li><label for="note">노트</label> <textarea id="note"></textarea>
+				</li>
+			</ol>
+		</form>
+	</section>
+</body>
+</html>
