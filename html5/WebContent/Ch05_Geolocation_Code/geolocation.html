@@ -55,7 +55,7 @@
       var latitude = position.coords.latitude;
       var longitude = position.coords.longitude;
 	  var accuracy = position.coords.accuracy;
- 	  var timestamp = position.timestamp;
+ 	  var timestamp = new Date(position.timestamp).toLocaleString();
 
       if (!latitude || !longitude) {
             document.getElementById("status").innerHTML = 
