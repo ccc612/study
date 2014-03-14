@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="ko-KR">
+<head>
+	<meta charset="UTF-8" />
+	<title>Support</title>
+	<script type="text/javascript" src="javascripts/application.js"></script>
+	<link rel="stylesheet" href="style.css" type="text/css" media="screen">
+</head>
+
+<body>
+
+	<div id="form">
+		<form id="supportform">
+			<fieldset>
+				<ol>
+					<li><label for="to">To</label> <input type="email" name="to"
+						id="to"></li>
+					<li><label for="from">From</label> <input type="text"
+						name="from" id="from"></li>
+					<li><label for="message">Message</label> <textarea
+							name="message" id="message"></textarea></li>
+				</ol>
+				<input type="submit" value="Send!">
+			</fieldset>
+		</form>
+	</div>
+
+	<div id="contacts">
+		<iframe
+			src="http://localhost:8080/remote/contactlist/public/index.html">
+		</iframe>
+	</div>
+</body>
+</html>
