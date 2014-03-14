@@ -4,5 +4,5 @@ window.onload = function() {
 		var origin = "*";
 		
 		window.parent.postMessage(email, origin);
-	}
-}
+	};
+};
