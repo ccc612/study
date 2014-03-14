@@ -164,7 +164,9 @@ window.onload = function() {
 };
 
 
-
+window.addEventListener('online', function() {
+	window.applicationCache.update();
+}, false)
 
 
 
